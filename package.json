@@ -1,0 +1,14 @@
+{
+  "name": "yu-ani",
+  "version": "1.0.2",
+  "description": "js动画",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "yu-util": "^1.1.8"
+  }
+}
