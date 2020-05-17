@@ -8,39 +8,20 @@ npm install yu-ani --save
   
 ### 引入
 ```javascript
-import { ani, setCss, getOffset, inertia } from 'yu-ani';
+import { ani, Yu, StyleAni, getOffset, inertia } from 'yu-ani';
 ```
 
-### setCss(element,options) 元素的样式动画
+### StyleAni——元素样式动画
 ```javascript
-let options = {
-	duration:300,  //默认300毫秒
-	initial:{      //动画初始值
-		width:0,
-		height:0,
-		transform:{
-			translateX:0,
-			rotate:0,
-			scaleX:1
-		}
-	},
-	target:{       //动画目标值
-		width:150,
-		height:100,
-		transform:{
-			translateX:300,
-			rotate:180,
-			scaleX:3
-		}
-	},
-	onUpdate(current){    //每一帧动画的回调函数
-		//current 动画当前值
-	},
-	complete(current){    //动画停止后的回调函数
-		//current 动画当前值
-	}
-}
-let status = setCss(document.querySelector('div'),options)
+let element = document.querySelector('#div');
+
+let status = new StyleAni(element,{ width: 0, transform: { translateX: 0 } })				//设置元素和动画初始值
+		.to({ width: 200, transform: { translateX: 1000} })  //动画目标值
+		.duration(500)   //动画持续时间500毫秒
+		.tick(current=>{})   //每一帧的回调函数，current是动画当前值
+		.complete(current=>{})   //动画完成的回调函数
+		.start();    //启动动画
+			
 /* 
 	status.restart()  //动画重新开始
 	status.pause()    //动画暂停
@@ -74,6 +55,23 @@ let status = ani(options);
 */
 ```
 
+### Yu——帧动画的链式调用方式
+```javascript
+let status = new Yu({ x:0,y:0 })  //动画初始值
+		.to({ x:100,y:50 })  					//动画目标值
+		.duration(500)								//动画持续时间500毫秒
+		.tick(current=>{})						//每一帧动画的回调函数，current是动画当前值
+		.complete(current=>{})				//动画停止后的回调函数
+		.start();											//启动动画
+
+/* 
+	status.restart()  //动画重新开始
+	status.pause()    //动画暂停
+	status.play()     //动画暂停后恢复
+	status.stop()			//动画立即停止。
+	status.stop(true) //动画立即完成
+*/
+```
 
 ### getOffset(options) 元素的pc端点击事件，和移动端的触屏事件
 ```javascript

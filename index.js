@@ -1,18 +1,21 @@
-import setCss from './lib/setCss.js'
+import StyleAni from './lib/StyleAni.js'
 import ani from './lib/ani.js'
+import Yu from './lib/Yu.js'
 import getOffset from './lib/getOffset.js'
 import inertia from './lib/inertia.js'
 
 export {
-	setCss,
+	StyleAni,
 	ani,
+	Yu,
 	getOffset,
 	inertia
 }
 
 export default {
-	setCss,
+	StyleAni,
 	ani,
+	Yu,
 	getOffset,
 	inertia
 }
