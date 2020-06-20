@@ -8,37 +8,17 @@ npm install yu-ani --save
   
 ### 引入
 ```javascript
-import { ani, Yu, StyleAni, getOffset, inertia } from 'yu-ani';
-```
-
-### StyleAni——元素样式动画
-```javascript
-let element = document.querySelector('#div');
-
-let status = new StyleAni(element,{ width: 0, transform: { translateX: 0 } })				//设置元素和动画初始值
-		.to({ width: 200, transform: { translateX: 1000} })  //动画目标值
-		.duration(500)   //动画持续时间500毫秒
-		.tick(current=>{})   //每一帧的回调函数，current是动画当前值
-		.complete(current=>{})   //动画完成的回调函数
-		.start();    //启动动画
-			
-/* 
-	status.restart()  //动画重新开始
-	status.pause()    //动画暂停
-	status.play()     //动画暂停后恢复
-	status.stop()			//动画立即停止。
-	status.stop(true) //动画立即完成
-*/
+import { ani, Yu, getOffset, inertia } from 'yu-ani';
 ```
 
 
-### ani(options) 帧动画
+### ani(options) 数字补间动画
 ```javascript
 let options = {
 	duration: 300,  //默认300毫秒
-	initial: { x:100,y:50 }, //动画初始值
-	target: { x:100,y:50 },  //动画目标值
-	onUpdate(current){    //每一帧动画的回调函数
+	initial: { x:0,y:0,arr:[0,0] }, //动画初始值
+	target: { x:100,y:50,arr:[150,80] },  //动画目标值
+	update(current){    //每一帧动画的回调函数
 		//current 动画当前值
 	},
 	complete(current){    //动画停止后的回调函数
@@ -47,29 +27,31 @@ let options = {
 }
 let status = ani(options);
 /* 
-	status.restart()  //动画重新开始
-	status.pause()    //动画暂停
-	status.play()     //动画暂停后恢复
-	status.stop()			//动画立即停止。
-	status.stop(true) //动画立即完成
+	status.pause()    	//动画暂停
+	status.regain()   	//动画暂停后恢复
+	status.reset()  		//动画重置到最初
+	status.reset(true)	//动画重新开始
+	status.stop()				//动画立即停止。
+	status.stop(true) 	//动画立即完成
 */
 ```
 
-### Yu——帧动画的链式调用方式
+### Yu——数字补间动画的链式调用方式
 ```javascript
 let status = new Yu({ x:0,y:0 })  //动画初始值
 		.to({ x:100,y:50 })  					//动画目标值
 		.duration(500)								//动画持续时间500毫秒
-		.tick(current=>{})						//每一帧动画的回调函数，current是动画当前值
+		.update(current=>{})						//每一帧动画的回调函数，current是动画当前值
 		.complete(current=>{})				//动画停止后的回调函数
 		.start();											//启动动画
 
 /* 
-	status.restart()  //动画重新开始
-	status.pause()    //动画暂停
-	status.play()     //动画暂停后恢复
-	status.stop()			//动画立即停止。
-	status.stop(true) //动画立即完成
+	status.pause()    	//动画暂停
+	status.regain()   	//动画暂停后恢复
+	status.reset()  		//动画重置到最初
+	status.reset(true)	//动画重新开始
+	status.stop()				//动画立即停止。
+	status.stop(true) 	//动画立即完成
 */
 ```
 

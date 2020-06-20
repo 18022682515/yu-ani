@@ -1,6 +1,6 @@
 {
   "name": "yu-ani",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "js动画",
   "main": "index.js",
   "scripts": {
@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "yu-util": "^1.1.8"
+		"yu-front": "^1.7.2",
+    "yu-util": "^1.2.2"
   }
 }
