@@ -78,13 +78,14 @@ let options = {
 }
 ```
 
-### inertia(speeds, callback, rub) 惯性动画
+### inertia(speeds, update, complete, rub) 惯性动画
 ```javascript
-let speeds = { x:2, y:1 }  //每一帧的速度值
-let rub = 0.95						//每一帧动画的摩擦比率
-function callback (current) {  //每一帧的回调函数
-	//current   		每一帧计算完摩擦比率后的速度值
+let speeds = { x:2, y:1 }  		//每一帧的速度值
+function update (current) {		//每一帧的回调函数
+	//current   		计算摩擦比率后的当前速度值
 }
-inertia(speeds, callback, rub).then(current=>{})
-//返回promise对象，惯性动画完成后，promise变成resolve状态
+function complete(current){}	//动画完成的回调函数
+let rub = 0.95								//每一帧动画的摩擦比率，默认0.95
+
+inertia(speeds, update, complete, rub)
 ```
